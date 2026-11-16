@@ -24,7 +24,9 @@ streebog = { version = "0.11", default-features = false }
 hex-literal = "1"
 
 [features]
+alloc = ["digest/alloc"]
 zeroize = ["digest/zeroize"]
+secret-input = ["alloc", "zeroize"]
 
 [lints]
 workspace = true

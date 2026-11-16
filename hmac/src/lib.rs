@@ -17,6 +17,9 @@
 )]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+#[cfg(feature = "secret-input")]
+extern crate alloc;
+
 pub use digest::{self, KeyInit, Mac, block_api::EagerHash};
 
 /// Block-level implementation.
@@ -56,3 +59,8 @@ impl<D: EagerHash + AlgorithmName> AlgorithmName for HmacReset<D> {
         <Self as CoreProxy>::Core::write_alg_name(f)
     }
 }
+
+#[cfg(feature = "secret-input")]
+mod secret;
+#[cfg(feature = "secret-input")]
+pub use secret::HmacSecret;
